@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Score Predictor</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+      max-width: 600px;
+    }
+    .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      background-color: #007bff;
+      color: #fff;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header text-center">
+        <h2>Predict Your Math Score</h2>
+      </div>
+      <div class="card-body">
+        <form action="/predict" method="post">
+          <!-- Gender -->
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" name="gender" required>
+              <option value="">Select...</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <!-- Race/Ethnicity -->
+          <div class="form-group">
+            <label for="race_ethnicity">Race/Ethnicity</label>
+            <select class="form-control" id="race_ethnicity" name="race_ethnicity" required>
+              <option value="">Select...</option>
+              <option value="group A">Group A</option>
+              <option value="group B">Group B</option>
+              <option value="group C">Group C</option>
+              <option value="group D">Group D</option>
+              <option value="group E">Group E</option>
+            </select>
+          </div>
+          <!-- Parental Level of Education -->
+          <div class="form-group">
+            <label for="parental_education">Parental Level of Education</label>
+            <select class="form-control" id="parental_education" name="parental_education" required>
+              <option value="">Select...</option>
+              <option value="some high school">Some High School</option>
+              <option value="high school">High School</option>
+              <option value="some college">Some College</option>
+              <option value="associate's degree">Associate's Degree</option>
+              <option value="bachelor's degree">Bachelor's Degree</option>
+              <option value="master's degree">Master's Degree</option>
+            </select>
+          </div>
+          <!-- Lunch -->
+          <div class="form-group">
+            <label for="lunch">Lunch</label>
+            <select class="form-control" id="lunch" name="lunch" required>
+              <option value="">Select...</option>
+              <option value="standard">Standard</option>
+              <option value="free/reduced">Free/Reduced</option>
+            </select>
+          </div>
+          <!-- Test Preparation Course -->
+          <div class="form-group">
+            <label for="test_preparation">Test Preparation Course</label>
+            <select class="form-control" id="test_preparation" name="test_preparation" required>
+              <option value="">Select...</option>
+              <option value="none">None</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <!-- Reading Score -->
+          <div class="form-group">
+            <label for="reading_score">Reading Score</label>
+            <input type="number" class="form-control" id="reading_score" name="reading_score" placeholder="Enter reading score" required>
+          </div>
+          <!-- Writing Score -->
+          <div class="form-group">
+            <label for="writing_score">Writing Score</label>
+            <input type="number" class="form-control" id="writing_score" name="writing_score" placeholder="Enter writing score" required>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-block">Predict Math Score</button>
+        </form>
+        {% if results %}
+          <div class="mt-4 text-center">
+              <h4>Predicted Math Score: {{ results }}</h4>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
