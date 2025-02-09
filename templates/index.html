@@ -5,38 +5,78 @@
   <title>Math Score Predictor</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Font Awesome CSS for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <style>
+    /* Body Background: Light gradient for a modern look */
     body {
-      background-color: #f8f9fa;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    /* Container spacing */
     .container {
-      margin-top: 50px;
+      margin-top: 60px;
       max-width: 600px;
     }
+    /* Card Styling: Rounded corners, drop shadow, and hover lift effect */
     .card {
       border: none;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
     }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    /* Card Header: Gradient background and centered text */
     .card-header {
-      background-color: #007bff;
+      background: linear-gradient(135deg, #007bff, #00d4ff);
       color: #fff;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      border-bottom: none;
+    }
+    /* Form Input Focus: Highlight with a soft blue glow */
+    .form-control:focus {
+      border-color: #00d4ff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
+    }
+    /* Submit Button: Smooth transition on hover */
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    /* Result Message: Styled with a left border */
+    .result {
+      background: #f1f1f1;
+      border-left: 5px solid #007bff;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    /* Label Icons: Add a little color and spacing */
+    label i {
+      color: #007bff;
+      margin-right: 5px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="card">
-      <div class="card-header text-center">
+      <div class="card-header">
         <h2>Predict Your Math Score</h2>
       </div>
       <div class="card-body">
         <form action="/predict" method="post">
           <!-- Gender -->
           <div class="form-group">
-            <label for="gender">Gender</label>
+            <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
             <select class="form-control" id="gender" name="gender" required>
               <option value="">Select...</option>
               <option value="male">Male</option>
@@ -45,7 +85,7 @@
           </div>
           <!-- Race/Ethnicity -->
           <div class="form-group">
-            <label for="race_ethnicity">Race/Ethnicity</label>
+            <label for="race_ethnicity"><i class="fas fa-users"></i> Race/Ethnicity</label>
             <select class="form-control" id="race_ethnicity" name="race_ethnicity" required>
               <option value="">Select...</option>
               <option value="group A">Group A</option>
@@ -57,7 +97,7 @@
           </div>
           <!-- Parental Level of Education -->
           <div class="form-group">
-            <label for="parental_education">Parental Level of Education</label>
+            <label for="parental_education"><i class="fas fa-user-graduate"></i> Parental Level of Education</label>
             <select class="form-control" id="parental_education" name="parental_education" required>
               <option value="">Select...</option>
               <option value="some high school">Some High School</option>
@@ -70,7 +110,7 @@
           </div>
           <!-- Lunch -->
           <div class="form-group">
-            <label for="lunch">Lunch</label>
+            <label for="lunch"><i class="fas fa-utensils"></i> Lunch</label>
             <select class="form-control" id="lunch" name="lunch" required>
               <option value="">Select...</option>
               <option value="standard">Standard</option>
@@ -79,7 +119,7 @@
           </div>
           <!-- Test Preparation Course -->
           <div class="form-group">
-            <label for="test_preparation">Test Preparation Course</label>
+            <label for="test_preparation"><i class="fas fa-check-circle"></i> Test Preparation Course</label>
             <select class="form-control" id="test_preparation" name="test_preparation" required>
               <option value="">Select...</option>
               <option value="none">None</option>
@@ -88,19 +128,20 @@
           </div>
           <!-- Reading Score -->
           <div class="form-group">
-            <label for="reading_score">Reading Score</label>
+            <label for="reading_score"><i class="fas fa-book-reader"></i> Reading Score</label>
             <input type="number" class="form-control" id="reading_score" name="reading_score" placeholder="Enter reading score" required>
           </div>
           <!-- Writing Score -->
           <div class="form-group">
-            <label for="writing_score">Writing Score</label>
+            <label for="writing_score"><i class="fas fa-pen"></i> Writing Score</label>
             <input type="number" class="form-control" id="writing_score" name="writing_score" placeholder="Enter writing score" required>
           </div>
           <!-- Submit Button -->
           <button type="submit" class="btn btn-primary btn-block">Predict Math Score</button>
         </form>
+        <!-- Display results if available -->
         {% if results %}
-          <div class="mt-4 text-center">
+          <div class="result text-center">
               <h4>Predicted Math Score: {{ results }}</h4>
           </div>
         {% endif %}
